@@ -14,8 +14,8 @@ function solverWorker() {
   };
   
   const wordzDFS = (boardData, words) => {
-    const board = [0, 3, 7, 11].map(value => boardData.slice(value, value + 4));
-  
+    const board = [0, 4, 8, 12].map(value => boardData.slice(value, value + 4));
+
     const filteredWords = findStringsThatCanBeFormedFromAnotherString(words, boardData).filter(word => word.length > 2);
     const wordsFound = new Set();
   
