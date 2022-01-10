@@ -1,7 +1,7 @@
 import { Container, FormControl } from 'react-bootstrap';
 import { useState, useRef } from 'react';
 
-import SolutionList from './components/SolutionList';
+import SolutionList from './components/SolutionList/SolutionList';
 import UsageGuide from './components/UsageGuide/UsageGuide';
 
 const App = () => {
