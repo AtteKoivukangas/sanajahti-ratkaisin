@@ -50,7 +50,7 @@ const SolutionList = ({ userInput }) => {
       {loading && <p>Etsitään sanoja</p>}
       {Array.from(map).map(([length, words]) => (
         <div key={length}>
-          <h3>{length} kirjaimen sanat</h3>
+          <h3>{length} kirjaimiset sanat</h3>
           <p>{words.join(', ')}</p>
         </div>
       ))}
