@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 
 import SolutionList from './components/SolutionList/SolutionList';
 import UsageGuide from './components/UsageGuide/UsageGuide';
+import Copyright from './components/Copyright/Copyright';
 
 const App = () => {
   const [userInput, setUserInput] = useState('');
@@ -28,6 +29,7 @@ const App = () => {
         value={userInput}
       />
       <SolutionList userInput={userInput} />
+      <Copyright />
     </Container>
   );
 };
