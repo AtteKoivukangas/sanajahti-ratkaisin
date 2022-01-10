@@ -1,4 +1,4 @@
-import finnishDictionary from '../utils/finnishDictionary.json';
+import finnishDictionary from '../finnishDictionary.json';
 import { useState, useEffect } from 'react';
 import solverWorkerScript from '../workers/solver.worker';
 
