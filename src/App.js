@@ -11,6 +11,7 @@ const App = () => {
     <Container className='mt-3'>
       <UsageGuide />
       <FormControl
+        className='mb-3'
         placeholder='Syötä kirjaimet'
         maxLength={16}
         onChange={({ target }) => setUserInput(target.value)}
