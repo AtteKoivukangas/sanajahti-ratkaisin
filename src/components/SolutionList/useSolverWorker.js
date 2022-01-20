@@ -1,6 +1,6 @@
 import finnishDictionary from '../../finnishDictionary.json';
 import solverWorkerScript from '../../workers/solver.worker';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { withPropsValidation } from '../../validation';
 
@@ -13,6 +13,8 @@ const useSolverWorker = userInput => {
   const [solutions, setSolutions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [worker, setWorker] = useState(null);
+  const [executionTime, setExecutionTime] = useState(null);
+  const startTime = useRef();
 
   useEffect(() => {
     withPropsValidation({
@@ -27,7 +29,8 @@ const useSolverWorker = userInput => {
         setWorker(null);
         setLoading(false);
       }
-  
+
+      setExecutionTime(null);
       return setSolutions([]);
     }
 
@@ -46,21 +49,26 @@ const useSolverWorker = userInput => {
         case 'error':
           console.log('useSolverWorker.js: Error occured in solverWorkerScript. \n', error);
           setSolutions([]);
+          setExecutionTime(null);
           break;
 
         default: break;
       }
 
+      setExecutionTime(((window.performance.now() - startTime.current) / 1000).toFixed(3));
+      startTime.current = null;
       setLoading(false);
     };
 
+    startTime.current = window.performance.now();
+    setExecutionTime(null);
     newWorker.postMessage({
       board: userInput,
       words: finnishDictionary.words.split(',')
     });
   }, [userInput]);
 
-  return [loading, solutions];
+  return [loading, solutions, executionTime];
 };
 
 export default useSolverWorker;

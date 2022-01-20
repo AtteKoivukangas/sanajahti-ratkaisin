@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const initialState = {
   solutions: [],
-  userInput: ''
+  userInput: '',
+  executionTime: null
 };
 
 export const store = createContext();
@@ -19,7 +20,8 @@ const propTypes = {
 
 export const actions = {
   SET_SOLUTIONS: 'SET_SOLUTIONS',
-  SET_USER_INPUT: 'SET_USER_INPUT'
+  SET_USER_INPUT: 'SET_USER_INPUT',
+  SET_EXECUTION_TIME: 'SET_EXECUTION_TIME'
 };
 
 const stateReducer = (state, action) => {
@@ -39,6 +41,15 @@ const stateReducer = (state, action) => {
       return {
         ...state,
         userInput
+      };
+    };
+
+    case actions.SET_EXECUTION_TIME: {
+      const { executionTime } = action.data;
+
+      return {
+        ...state,
+        executionTime
       };
     };
 

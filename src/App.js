@@ -1,4 +1,4 @@
-import { Container, FormControl } from 'react-bootstrap';
+import { Container, FormControl, FormGroup, FormText, FormLabel } from 'react-bootstrap';
 import { useState, useRef, useContext } from 'react';
 
 import SolutionList from './components/SolutionList/SolutionList';
@@ -9,7 +9,7 @@ import { store, actions } from './store';
 const App = () => {
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef();
-  const { dispatch } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   const handleUserInputChange = ({ target }) => {
     setUserInput(target.value);
@@ -29,14 +29,19 @@ const App = () => {
   return (
     <Container className='mt-3'>
       <UsageGuide />
-      <FormControl
-        ref={inputRef}
-        className='mb-3'
-        placeholder='Syötä kirjaimet'
-        maxLength={16}
-        onChange={handleUserInputChange}
-        value={userInput}
-      />
+      <FormGroup>
+        <FormControl
+          ref={inputRef}
+          placeholder='Syötä kirjaimet esimerkin mukaisesti'
+          maxLength={16}
+          onChange={handleUserInputChange}
+          value={userInput}
+        />
+        <FormText className="text-muted statistics-text">
+          {state.executionTime && `Haku vei ${state.executionTime}s, löydettiin ${state.solutions.length} sanaa.`}
+        </FormText>
+      </FormGroup>
+      
       <SolutionList userInput={userInput} />
       <Copyright />
     </Container>

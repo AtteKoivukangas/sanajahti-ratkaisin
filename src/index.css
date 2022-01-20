@@ -5,3 +5,8 @@
   -o-user-select: none;
   user-select: none;
 }
+
+.statistics-text {
+  margin-left: 12px;
+  font-size: 12px;
+}

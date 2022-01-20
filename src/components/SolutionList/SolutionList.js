@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const SolutionList = ({ userInput }) => {
-  const [loading, solutions] = useSolverWorker(userInput);
+  const [loading, solutions, executionTime] = useSolverWorker(userInput);
   const { state, dispatch } = useContext(store);
 
   useEffect(() => {
@@ -21,6 +21,15 @@ const SolutionList = ({ userInput }) => {
       }
     });
   }, [solutions]);
+
+  useEffect(() => {
+    dispatch({
+      type: actions.SET_EXECUTION_TIME,
+      data: {
+        executionTime
+      }
+    });
+  }, [executionTime])
 
   return (
     <div>
