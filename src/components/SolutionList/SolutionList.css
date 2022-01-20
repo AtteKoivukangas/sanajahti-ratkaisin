@@ -1,7 +1,7 @@
 .word-container {
   background-color: #ededed;
   padding: 7px;
-  font-family: Consolas, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Consolas, monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
 }
 
