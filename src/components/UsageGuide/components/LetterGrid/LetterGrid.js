@@ -1,4 +1,16 @@
 import './LetterGrid.css';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  grid: PropTypes.arrayOf((propValue, key, componentName, location, propFullName) => {
+    if (typeof propValue[key] !== 'string' || propValue[key].length !== 4) {
+      return new Error(
+        'Invalid prop `' + propFullName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  }).isRequired
+};
 
 const LetterGrid = ({ grid }) => {
   return (
@@ -15,5 +27,7 @@ const LetterGrid = ({ grid }) => {
     </div>
   );
 };
+
+LetterGrid.propTypes = propTypes;
 
 export default LetterGrid;

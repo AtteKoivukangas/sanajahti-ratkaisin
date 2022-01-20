@@ -1,6 +1,13 @@
 import finnishDictionary from '../../finnishDictionary.json';
 import solverWorkerScript from '../../workers/solver.worker';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { withPropsValidation } from '../../validation';
+
+const propTypes = {
+  userInput: PropTypes.string.isRequired,
+  age: PropTypes.string
+};
 
 const useSolverWorker = userInput => {
   const [solutions, setSolutions] = useState([]);
@@ -8,6 +15,12 @@ const useSolverWorker = userInput => {
   const [worker, setWorker] = useState(null);
 
   useEffect(() => {
+    withPropsValidation({
+      props: { userInput },
+      propTypes,
+      componentName: 'useSolverWorker'
+    });
+
     if (userInput.length < 16) {
       if (worker) {
         worker.terminate();

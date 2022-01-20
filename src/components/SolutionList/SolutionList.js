@@ -1,5 +1,10 @@
 import { groupSolutions } from './SolutionListUtils';
 import useSolverWorker from './useSolverWorker';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  userInput: PropTypes.string.isRequired
+};
 
 const SolutionList = ({ userInput }) => {
   const [loading, solutions] = useSolverWorker(userInput);
@@ -18,5 +23,7 @@ const SolutionList = ({ userInput }) => {
     </div>
   );
 };
+
+SolutionList.propTypes = propTypes;
 
 export default SolutionList;
