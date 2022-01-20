@@ -69,10 +69,24 @@ function solverWorker() {
   // eslint-disable-next-line no-restricted-globals
   self.onmessage = event => {
     const { board, words } = event.data;
-    const solutions = wordzDFS(board, words);
 
-    // eslint-disable-next-line no-restricted-globals
-    self.postMessage(solutions);
+    try {
+      const solutions = wordzDFS(board, words);
+
+      // eslint-disable-next-line no-restricted-globals
+      self.postMessage({
+        status: 'success',
+        solutions,
+        error: null
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-restricted-globals
+      self.postMessage({
+        status: 'error',
+        solutions: null,
+        error: error
+      });
+    }
   }
 };
 

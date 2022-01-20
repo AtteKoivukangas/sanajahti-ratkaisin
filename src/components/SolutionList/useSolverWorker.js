@@ -35,8 +35,22 @@ const useSolverWorker = userInput => {
     setWorker(newWorker);
     setLoading(true);
 
-    newWorker.onmessage = e => {
-      setSolutions(e.data);
+    newWorker.onmessage = ({ data }) => {
+      const { solutions, error, status } = data;
+
+      switch (status) {
+        case 'success':
+          setSolutions(solutions);
+          break;
+
+        case 'error':
+          console.log('useSolverWorker.js: Error occured in solverWorkerScript. \n', error);
+          setSolutions([]);
+          break;
+
+        default: break;
+      }
+
       setLoading(false);
     };
 
