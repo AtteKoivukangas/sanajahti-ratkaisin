@@ -1,16 +1,25 @@
 import { Container, FormControl } from 'react-bootstrap';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 
 import SolutionList from './components/SolutionList/SolutionList';
 import UsageGuide from './components/UsageGuide/UsageGuide';
 import Copyright from './components/Copyright/Copyright';
+import { store, actions } from './store';
 
 const App = () => {
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef();
+  const { dispatch } = useContext(store);
 
   const handleUserInputChange = ({ target }) => {
     setUserInput(target.value);
+
+    dispatch({
+      type: actions.SET_USER_INPUT,
+      data: {
+        userInput: target.value
+      }
+    });
 
     if (target.value.length === 16) {
       inputRef.current.blur();

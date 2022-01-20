@@ -5,15 +5,24 @@ import { FormControl } from 'react-bootstrap';
 import LetterGrid from './components/LetterGrid/LetterGrid';
 import { store } from '../../store';
 
-const grid = [
-  'rivi',
-  'sana',
-  'lovi',
-  'mies'
-];
-
 const UsageGuide = () => {
   const { state } = useContext(store);
+
+  let grid = [
+    'rivi',
+    'sana',
+    'lovi',
+    'mies'
+  ];
+
+  let word = grid.join('');
+
+  if (state.solutions.length > 0 && state.userInput.length === 16) {
+    grid = [0, 4, 8, 12].map((value) =>
+      state.userInput.slice(value, value+4).toUpperCase()
+    );
+    word = state.solutions[0];
+  }
 
   return (
     <div className='usage-guide-wrapper mb-3'>
@@ -24,7 +33,7 @@ const UsageGuide = () => {
         <img src={arrow} draggable='false' className='unselectable' />
       </div>
       <div className='usage-guide-input'>
-        <FormControl value={state.solutions.length ? state.solutions[0] : 'RIVISANALOVIMIES'} disabled />
+        <FormControl value={word} disabled />
       </div>
     </div>
   );

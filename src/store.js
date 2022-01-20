@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const initialState = {
-  solutions: []
+  solutions: [],
+  userInput: ''
 };
 
 export const store = createContext();
@@ -17,7 +18,8 @@ const propTypes = {
 };
 
 export const actions = {
-  SET_SOLUTIONS: 'SET_SOLUTIONS'
+  SET_SOLUTIONS: 'SET_SOLUTIONS',
+  SET_USER_INPUT: 'SET_USER_INPUT'
 };
 
 const stateReducer = (state, action) => {
@@ -28,6 +30,15 @@ const stateReducer = (state, action) => {
       return {
         ...state,
         solutions
+      };
+    };
+
+    case actions.SET_USER_INPUT: {
+      const { userInput } = action.data;
+
+      return {
+        ...state,
+        userInput
       };
     };
 
