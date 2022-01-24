@@ -1,11 +1,31 @@
 import { FormControl, FormGroup, FormText } from 'react-bootstrap';
 import actionTypes from 'shared/store/constants/actionTypes';
 import { storeContext } from 'shared/store';
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useEffect } from 'react';
+import useSolverWorker from 'shared/hooks/useSolverWorker';
 
 const GridInput = () => {
   const { state, dispatch } = useContext(storeContext);
+  const [solutions, executionTime] = useSolverWorker(state.userInput);
   const inputRef = useRef();
+
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.SET_SOLUTIONS,
+      data: {
+        solutions
+      }
+    });
+  }, [solutions]);
+
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.SET_EXECUTION_TIME,
+      data: {
+        executionTime
+      }
+    });
+  }, [executionTime])
 
   const handleUserInputChange = ({ target }) => {
     dispatch({
