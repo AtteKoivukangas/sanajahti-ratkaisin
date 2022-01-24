@@ -1,8 +1,8 @@
-import finnishDictionary from 'finnishDictionary.json';
-import solverWorkerScript from 'workers/solver.worker';
+import finnishDictionary from 'shared/constants/finnishDictionary.json';
+import solverWorkerScript from 'shared/workers/solver.worker';
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { withPropsValidation } from 'validation';
+import { withPropsValidation } from 'shared/utils/validation';
 
 const propTypes = {
   userInput: PropTypes.string.isRequired,
