@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { StateProvider } from './store';
+import { StateProvider } from 'shared/store';
 
 ReactDOM.render(
   <React.StrictMode>

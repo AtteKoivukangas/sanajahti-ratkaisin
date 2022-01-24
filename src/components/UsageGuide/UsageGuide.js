@@ -3,10 +3,10 @@ import './UsageGuide.css';
 import arrow from './arrow.svg';
 import { FormControl } from 'react-bootstrap';
 import LetterGrid from './components/LetterGrid/LetterGrid';
-import { store } from '../../store';
+import { storeContext } from 'shared/store';
 
 const UsageGuide = () => {
-  const { state } = useContext(store);
+  const { state } = useContext(storeContext);
 
   let grid = [
     'rivi',

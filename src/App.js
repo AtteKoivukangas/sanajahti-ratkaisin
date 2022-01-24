@@ -4,18 +4,19 @@ import { useState, useRef, useContext } from 'react';
 import SolutionList from './components/SolutionList/SolutionList';
 import UsageGuide from './components/UsageGuide/UsageGuide';
 import Copyright from './components/Copyright/Copyright';
-import { store, actions } from './store';
+import { storeContext } from 'shared/store';
+import actionTypes from 'shared/store/constants/actionTypes';
 
 const App = () => {
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef();
-  const { state, dispatch } = useContext(store);
+  const { state, dispatch } = useContext(storeContext);
 
   const handleUserInputChange = ({ target }) => {
     setUserInput(target.value);
 
     dispatch({
-      type: actions.SET_USER_INPUT,
+      type: actionTypes.SET_USER_INPUT,
       data: {
         userInput: target.value
       }

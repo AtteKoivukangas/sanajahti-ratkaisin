@@ -2,7 +2,8 @@ import { useContext, useEffect } from 'react';
 import { groupSolutions } from './SolutionListUtils';
 import useSolverWorker from './useSolverWorker';
 import PropTypes from 'prop-types';
-import { store, actions } from '../../store';
+import { storeContext } from 'shared/store';
+import actionTypes from 'shared/store/constants/actionTypes';
 import './SolutionList.css';
 
 const propTypes = {
@@ -11,11 +12,11 @@ const propTypes = {
 
 const SolutionList = ({ userInput }) => {
   const [loading, solutions, executionTime] = useSolverWorker(userInput);
-  const { state, dispatch } = useContext(store);
+  const { state, dispatch } = useContext(storeContext);
 
   useEffect(() => {
     dispatch({
-      type: actions.SET_SOLUTIONS,
+      type: actionTypes.SET_SOLUTIONS,
       data: {
         solutions
       }
@@ -24,7 +25,7 @@ const SolutionList = ({ userInput }) => {
 
   useEffect(() => {
     dispatch({
-      type: actions.SET_EXECUTION_TIME,
+      type: actionTypes.SET_EXECUTION_TIME,
       data: {
         executionTime
       }
