@@ -6,13 +6,9 @@ import { storeContext } from 'shared/store';
 import actionTypes from 'shared/store/constants/actionTypes';
 import './SolutionList.css';
 
-const propTypes = {
-  userInput: PropTypes.string.isRequired
-};
-
-const SolutionList = ({ userInput }) => {
-  const [loading, solutions, executionTime] = useSolverWorker(userInput);
+const SolutionList = () => {
   const { state, dispatch } = useContext(storeContext);
+  const [loading, solutions, executionTime] = useSolverWorker(state.userInput);
 
   useEffect(() => {
     dispatch({
@@ -48,7 +44,5 @@ const SolutionList = ({ userInput }) => {
     </div>
   );
 };
-
-SolutionList.propTypes = propTypes;
 
 export default SolutionList;
