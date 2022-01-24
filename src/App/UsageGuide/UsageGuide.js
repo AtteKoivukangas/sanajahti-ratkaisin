@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import './UsageGuide.css';
 import arrow from './arrow.svg';
 import { FormControl } from 'react-bootstrap';
-import LetterGrid from './components/LetterGrid/LetterGrid';
+import LetterGrid from './LetterGrid';
 import { storeContext } from 'shared/store';
 
 const UsageGuide = () => {

@@ -13,4 +13,3 @@ export const groupSolutions = solutions => {
 
   return Array.from(map).map(([length, words]) => ({ length, words }));
 };
-
