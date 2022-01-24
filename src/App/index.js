@@ -3,6 +3,7 @@ import SolutionList from 'components/SolutionList/SolutionList';
 import UsageGuide from 'components/UsageGuide/UsageGuide';
 import Copyright from 'components/Copyright/Copyright';
 import GridInput from './GridInput';
+import './App.css';
 
 const App = () => {
   return (
