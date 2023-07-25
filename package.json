@@ -1,7 +1,9 @@
 {
   "name": "sanajahti-ratkaisin",
   "version": "1.0.0",
+  "author": "Attroid",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "firebase": "^10.1.0",
     "lodash": "^4.17.21",
