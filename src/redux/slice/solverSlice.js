@@ -1,5 +1,5 @@
 import solve from 'solver';
-import { calculateExecutionTime } from 'helpers';
+import { withTimeMeasurement } from 'helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const solveOnUserInput = createAsyncThunk(
@@ -14,11 +14,9 @@ const solveOnUserInput = createAsyncThunk(
       return;
     }
 
-    const startTime = window.performance.now();
-    const solutions = await solve(value);
-    const endTime = window.performance.now();
-
-    const executionTime = calculateExecutionTime(startTime, endTime);
+    const [solutions, executionTime] = await withTimeMeasurement(() =>
+      solve(value)
+    );
 
     thunkAPI.dispatch({
       type: 'solverSlice/setSolutions',
@@ -53,12 +51,14 @@ const solverSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(solveOnUserInput.rejected, (state) => {
+    builder.addCase(solveOnUserInput.rejected, (state, action) => {
       const update = {
         solutions: [],
         executionTime: null,
         errorText: 'Haku epäonnistui',
       };
+
+      console.log(state, action);
 
       Object.assign(state, update);
     });

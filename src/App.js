@@ -4,15 +4,19 @@ import Preview from 'components/Preview';
 import Copyright from 'components/Copyright';
 import Input from 'components/Input';
 import './App.css';
+import store from 'redux/config/store';
+import { Provider } from 'react-redux';
 
 const App = () => {
   return (
-    <Container className='mt-3'>
-      <Preview />
-      <Input />
-      <SolutionList />
-      <Copyright />
-    </Container>
+    <Provider store={store}>
+      <Container className='mt-3'>
+        <Preview />
+        <Input />
+        <SolutionList />
+        <Copyright />
+      </Container>
+    </Provider>
   );
 };
 
