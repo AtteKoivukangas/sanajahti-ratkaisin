@@ -1,13 +1,12 @@
 import './Preview.css';
-import arrow from './arrow.svg';
 import { FormControl } from 'react-bootstrap';
 import LetterGrid from './LetterGrid';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/config/hooks';
 
 const exampleGrid = ['rivi', 'sana', 'lovi', 'mies'];
 
 const Preview = () => {
-  const solver = useSelector((state) => state.solver);
+  const solver = useAppSelector((state) => state.solver);
 
   // If there is solutions in store we render entered grid and longest solution in it,
   // otherwise we render example grid and word from which that particular
@@ -27,7 +26,9 @@ const Preview = () => {
         <LetterGrid grid={grid} />
       </div>
       <div className='usage-guide-arrow'>
-        <img src={arrow} draggable='false' className='unselectable' />
+        <svg width='24' height='24' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z' />
+        </svg>
       </div>
       <div className='usage-guide-input'>
         <FormControl value={inputValue} disabled />

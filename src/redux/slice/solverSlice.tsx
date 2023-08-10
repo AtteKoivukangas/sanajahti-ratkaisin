@@ -1,10 +1,10 @@
-import solve from 'solver';
-import { withTimeMeasurement } from 'helpers';
+import solve from '../../solver';
+import { withTimeMeasurement } from '../../helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const solveOnUserInput = createAsyncThunk(
   'solverSlice/solveOnUserInput',
-  async (value, thunkAPI) => {
+  async (value: string, thunkAPI) => {
     thunkAPI.dispatch({
       type: 'solverSlice/setUserInput',
       payload: { value },

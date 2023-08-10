@@ -1,7 +1,7 @@
 function solverWorker() {
   const findStringsThatCanBeFormedFromAnotherString = (
-    stringArray,
-    givenString
+    stringArray: string[],
+    givenString: string
   ) => {
     const charCounts = new Array(215).fill(0);
     for (let i = givenString.length - 1; i >= 0; i--) {
@@ -20,7 +20,7 @@ function solverWorker() {
     });
   };
 
-  const wordzDFS = (boardData, words) => {
+  const wordzDFS = (boardData: string, words: string[]) => {
     const board = [0, 4, 8, 12].map((value) =>
       boardData.slice(value, value + 4)
     );
@@ -29,7 +29,7 @@ function solverWorker() {
       words,
       boardData
     ).filter((word) => word.length > 2);
-    const wordsFound = new Set();
+    const wordsFound = new Set<string>();
 
     filteredWords
       .map((n) => n.toUpperCase())
@@ -39,10 +39,10 @@ function solverWorker() {
           visitedSlots[i] = new Array(4).fill(0);
         }
 
-        const wordBuilder = [];
+        const wordBuilder: string[] = [];
         let isWordBuiltSuccesfully = false;
 
-        const dfs = (y, x) => {
+        const dfs = (y: number, x: number) => {
           if (
             y < 0 ||
             y > 3 ||
@@ -85,18 +85,21 @@ function solverWorker() {
 
     return Array.from(wordsFound).sort((a, b) => b.length - a.length);
   };
+  // eslint-disable-next-line no-restricted-globals
   self.onmessage = (event) => {
     const { board, words } = event.data;
 
     try {
       const solutions = wordzDFS(board, words);
 
+      // eslint-disable-next-line no-restricted-globals
       self.postMessage({
         status: 'success',
         solutions,
         error: null,
       });
     } catch (error) {
+      // eslint-disable-next-line no-restricted-globals
       self.postMessage({
         status: 'error',
         solutions: null,

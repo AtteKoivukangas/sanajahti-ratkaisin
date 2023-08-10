@@ -1,7 +1,7 @@
 import finnishDictionary from './finnishDictionary.json';
 import workerScript from './solver.worker';
 
-async function solve(board) {
+async function solve(board: string) {
   const newWorker = new Worker(workerScript);
 
   return new Promise((resolve, reject) => {

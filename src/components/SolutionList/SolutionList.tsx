@@ -1,19 +1,19 @@
 import './SolutionList.css';
-import { useSelector } from 'react-redux';
 import _ from 'lodash';
+import { useAppSelector } from '../../redux/config/hooks';
 
 const SolutionList = () => {
-  const solver = useSelector((state) => state.solver);
+  const solver = useAppSelector((state) => state.solver);
 
   const groupedSolutions = _.groupBy(
     solver.solutions,
-    (solution) => solution.length
+    (solution: string) => solution.length
   );
 
   return (
     <div>
       {Object.keys(groupedSolutions)
-        .sort((a, b) => b - a) // Sort keys in descending order
+        .sort((a, b) => Number(b) - Number(a)) // Sort keys in descending order
         .map((key) => (
           <div key={key}>
             <h3 className='word-container-title'>{key} kirjaimiset sanat</h3>

@@ -1,6 +1,11 @@
+import React from 'react';
 import './LetterGrid.css';
 
-const LetterGrid = ({ grid }) => {
+interface LetterGridProps {
+  grid: string[];
+}
+
+const LetterGrid: React.FC<LetterGridProps> = ({ grid }) => {
   return (
     <div className='grid-wrapper'>
       <div className='grid'>
