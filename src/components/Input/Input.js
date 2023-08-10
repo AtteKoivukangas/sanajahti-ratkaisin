@@ -1,13 +1,13 @@
 import { FormControl, FormGroup, FormText } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions as solverActions } from 'reducers/solverReducer';
+import { solverActions } from 'redux/slice/solverSlice';
 
 const Input = () => {
   const dispatch = useDispatch();
   const solver = useSelector((state) => state.solver);
 
   const onChange = ({ target }) => {
-    dispatch(solverActions.setUserInput(target.value));
+    dispatch(solverActions.solveOnUserInput(target.value));
   };
 
   return (
